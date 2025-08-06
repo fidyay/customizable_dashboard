@@ -21,6 +21,18 @@ import { LucideTrash } from "lucide-react";
 import { cn } from "../utils";
 import { useStore } from "../hooks";
 
+type TFormTitleProps = {
+  hyperLink?: THyperLink;
+};
+
+const FormTitle: React.FC<TFormTitleProps> = ({ hyperLink }) => {
+  return (
+    <h1 className="font-bold mb-4">
+      {hyperLink ? `Edit hyperlink ${hyperLink.title}` : "Create hyperlink"}
+    </h1>
+  );
+};
+
 type TDeleteHyperLinkProps = {
   hyperLink: THyperLink;
   handleBack: () => void;
@@ -96,6 +108,7 @@ export const EditCreateHyperLinkForm: React.FC<TProps> = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
+        <FormTitle hyperLink={hyperLink} />
         <div className="flex flex-col gap-2">
           <FormField
             control={form.control}
@@ -148,7 +161,7 @@ export const EditCreateHyperLinkForm: React.FC<TProps> = ({
           ) : null}
 
           <div className="flex items-center gap-2">
-            <Button type="button" onClick={handleBack}>
+            <Button variant="outline" type="button" onClick={handleBack}>
               Cancel
             </Button>
             <Button>Save</Button>

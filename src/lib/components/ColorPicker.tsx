@@ -1,20 +1,25 @@
-import { TAppColor, TAppTailwindColor } from "@/lib/types";
+"use client";
+import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
+import { Button } from "./shadcn/button";
+import { Popover, PopoverContent, PopoverTrigger } from "./shadcn/popover";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./shadcn/select";
-import { appColors, capitalize } from "@/lib/utils";
-import { Ref } from "react";
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "./shadcn/command";
+import React from "react";
+import { appBgColors, capitalize, cn } from "../utils";
+import { TAppColor, TAppTailwindColor } from "../types";
 
 type TColorDotProps = {
   color: TAppTailwindColor;
 };
 
 const ColorDot: React.FC<TColorDotProps> = ({ color }) => {
-  return <div className={`h-2 w-2 rounded-full bg-${color}`} />;
+  return <div className={`h-2 w-2 rounded-full ${color}`} />;
 };
 
 type TProps = {
@@ -23,24 +28,56 @@ type TProps = {
 };
 
 export const ColorPicker: React.FC<TProps> = ({ value, onChange }) => {
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className="w-full">
-        <SelectValue placeholder="Color" />
-      </SelectTrigger>
-      <SelectContent>
-        {Object.entries(appColors).map(([value, style]) => {
-          return (
-            <SelectItem
-              className="flex items-center gap-1"
-              key={value}
-              value={value}
-            >
-              <ColorDot color={style} /> {capitalize(value)}
-            </SelectItem>
-          );
-        })}
-      </SelectContent>
-    </Select>
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className="w-full justify-between"
+        >
+          {value ? capitalize(value) : "Select color..."}
+          <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent side="bottom" align="start" className="w-[200px] p-0">
+        <Command>
+          <CommandInput placeholder="Search color..." />
+          <CommandList>
+            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandGroup>
+              {Object.entries(appBgColors).map(([currentValue, style]) => {
+                return (
+                  <CommandItem
+                    key={currentValue}
+                    value={currentValue}
+                    onSelect={(value) => {
+                      onChange(value as TAppColor);
+                      setOpen(false);
+                    }}
+                  >
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex items-center gap-2">
+                        <CheckIcon
+                          className={cn(
+                            "h-4 w-4",
+                            currentValue === value ? "opacity-100" : "opacity-0"
+                          )}
+                        />
+                        {capitalize(currentValue)}
+                      </div>
+                      <ColorDot color={style} />
+                    </div>
+                  </CommandItem>
+                );
+              })}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
   );
 };

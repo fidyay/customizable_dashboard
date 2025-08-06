@@ -1,6 +1,6 @@
-import { appColors } from "../utils";
+import { appBgColors } from "../utils";
 
-type TAppColorObj = typeof appColors;
+type TAppColorObj = typeof appBgColors;
 
 export type TAppColor = keyof TAppColorObj;
 export type TAppTailwindColor = TAppColorObj[TAppColor];

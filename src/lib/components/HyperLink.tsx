@@ -1,7 +1,7 @@
 import { TAppColor, THyperLink } from "@/lib/types";
 import { HyperLinkWrapper } from "./HyperLinkWrapper";
 import { Button } from "./shadcn/button";
-import { appColors } from "@/lib/utils";
+import { appBgColors } from "@/lib/utils";
 
 type THyperLinkButtonProps = {
   link: string;
@@ -11,7 +11,7 @@ type THyperLinkButtonProps = {
 const HyperLinkButton: React.FC<THyperLinkButtonProps> = ({ color, link }) => {
   return (
     <a href={link} target="_blank">
-      <Button className={`bg-${appColors[color]}`}>Go</Button>
+      <Button className={appBgColors[color]}>Go</Button>
     </a>
   );
 };
