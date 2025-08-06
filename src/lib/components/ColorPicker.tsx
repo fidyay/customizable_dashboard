@@ -13,7 +13,7 @@ type TColorDotProps = {
 };
 
 const ColorDot: React.FC<TColorDotProps> = ({ color }) => {
-  return <div className={`h-5 w-5 rounded-full bg-${color}`} />;
+  return <div className={`h-2 w-2 rounded-full bg-${color}`} />;
 };
 
 type TProps = {

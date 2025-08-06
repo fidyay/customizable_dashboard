@@ -2,7 +2,7 @@ import * as z from "zod";
 import { appColorsArr } from "../utils";
 
 export const hyperLinkSchema = z.object({
-  name: z.string(),
+  title: z.string().max(50),
   link: z.url(),
   color: z.enum(appColorsArr),
 });
