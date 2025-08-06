@@ -3,18 +3,15 @@ import { cn } from "@/lib/utils";
 type TProps = {
   className?: string;
   children: React.ReactNode | React.ReactNode[];
-  onClick?: () => void;
 };
 
-export const HyperLinkWrapper: React.FC<TProps> = ({
-  className,
-  children,
-  onClick,
-}) => {
+export const HyperLinkWrapper: React.FC<TProps> = ({ className, children }) => {
   return (
     <div
-      className={cn("flex items-center justify-center", className)}
-      onClick={onClick}
+      className={cn(
+        "flex items-center justify-center rounded-full border-border",
+        className
+      )}
     >
       {children}
     </div>

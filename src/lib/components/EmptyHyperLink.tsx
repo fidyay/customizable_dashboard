@@ -1,15 +1,16 @@
 import { LucidePlus } from "lucide-react";
 import { HyperLinkWrapper } from "./HyperLinkWrapper";
+import NextLink from "next/link";
 
-type TProps = {
-  // I use function from props instead of creating it inside of component in order to not fill the RAM of a device with similar functions
-  onClick: () => void;
-};
-
-export const EmptyHyperLink: React.FC<TProps> = ({ onClick }) => {
+export const EmptyHyperLink = () => {
   return (
-    <HyperLinkWrapper onClick={onClick}>
-      <LucidePlus />
+    <HyperLinkWrapper>
+      <NextLink
+        className="h-full w-full flex items-center justify-center"
+        href={"/hyperlink"}
+      >
+        <LucidePlus />
+      </NextLink>
     </HyperLinkWrapper>
   );
 };

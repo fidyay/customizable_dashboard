@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from "./shadcn/select";
 import { appColors, capitalize } from "@/lib/utils";
+import { Ref } from "react";
 
 type TColorDotProps = {
   color: TAppTailwindColor;
@@ -24,7 +25,7 @@ type TProps = {
 export const ColorPicker: React.FC<TProps> = ({ value, onChange }) => {
   return (
     <Select value={value} onValueChange={onChange}>
-      <SelectTrigger>
+      <SelectTrigger className="w-full">
         <SelectValue placeholder="Color" />
       </SelectTrigger>
       <SelectContent>

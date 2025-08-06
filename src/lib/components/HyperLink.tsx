@@ -23,7 +23,7 @@ type TProps = {
 export const HyperLink: React.FC<TProps> = ({ hyperLink }) => {
   return (
     <HyperLinkWrapper className="flex-col gap-2">
-      <h3>{hyperLink.title}</h3>
+      <h3 className="max-w-full truncate">{hyperLink.title}</h3>
       <HyperLinkButton color={hyperLink.color} link={hyperLink.link} />
     </HyperLinkWrapper>
   );

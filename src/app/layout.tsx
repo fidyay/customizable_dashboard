@@ -5,7 +5,7 @@ import { Toaster } from "@/lib/components/shadcn/sonner";
 
 const roboto = Roboto({
   variable: "--font-roboto",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
 });
 
 export const metadata: Metadata = {
