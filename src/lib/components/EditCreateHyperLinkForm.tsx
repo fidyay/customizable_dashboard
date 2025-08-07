@@ -21,6 +21,7 @@ import { ResponsiveDialog } from "./shadcn/responsive-dialog";
 import { LucideTrash } from "lucide-react";
 import { cn } from "../utils";
 import { useStore } from "../hooks";
+import { toast } from "sonner";
 
 type TFormTitleProps = {
   hyperLink?: THyperLink;
@@ -48,6 +49,7 @@ const DeleteHyperLink: React.FC<TDeleteHyperLinkProps> = ({
   const onConfirm = useCallback(() => {
     deleteHyperLink(hyperLink.id);
     handleBack();
+    toast.success(`Deleted hyperlink ${hyperLink.title}`);
   }, [deleteHyperLink, handleBack, hyperLink.id]);
 
   return (
@@ -96,12 +98,14 @@ export const EditCreateHyperLinkForm: React.FC<TProps> = ({ hyperLink }) => {
           id: hyperLink.id,
           createdAt: hyperLink.createdAt,
         });
+        toast.success(`Updated hyperlink ${hyperLink.title}`);
       } else {
         addHyperLink({
           ...form,
           id: nanoid(),
           createdAt: new Date().valueOf(),
         });
+        toast.success(`Created hyperlink ${form.title}`);
       }
 
       handleBack();
