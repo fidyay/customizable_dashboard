@@ -54,6 +54,7 @@ export const ColorPicker: React.FC<TProps> = ({ value, onChange }) => {
                   <CommandItem
                     key={currentValue}
                     value={currentValue}
+                    className="cursor-pointer"
                     onSelect={(value) => {
                       onChange(value as TAppColor);
                       setOpen(false);

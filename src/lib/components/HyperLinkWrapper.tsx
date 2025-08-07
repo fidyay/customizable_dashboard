@@ -9,7 +9,7 @@ export const HyperLinkWrapper: React.FC<TProps> = ({ className, children }) => {
   return (
     <div
       className={cn(
-        "flex items-center justify-center rounded-full border-border",
+        "flex items-center justify-center rounded-md border-border border p-4 min-h-24",
         className
       )}
     >

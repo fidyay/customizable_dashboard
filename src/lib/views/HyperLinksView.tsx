@@ -30,5 +30,9 @@ export const HyperLinksView = () => {
     ];
   }, [hyperLinksArr]);
 
-  return <div>{hyperLinksComponentsArr}</div>;
+  return (
+    <div className="grid-cols-2 md:grid-cols-3 grid gap-2">
+      {hyperLinksComponentsArr}
+    </div>
+  );
 };

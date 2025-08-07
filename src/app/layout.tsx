@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.className} antialiased`}>
-        <main className="w-full max-w-md mx-auto p-4">{children}</main>
+        <main className="w-full max-w-lg mx-auto p-4">{children}</main>
         <Toaster />
       </body>
     </html>

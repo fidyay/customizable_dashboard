@@ -4,7 +4,7 @@ import NextLink from "next/link";
 
 export const EmptyHyperLink = () => {
   return (
-    <HyperLinkWrapper>
+    <HyperLinkWrapper className="cursor-pointer hover:bg-accent hover:text-accent-foreground">
       <NextLink
         className="h-full w-full flex items-center justify-center"
         href={"/hyperlink"}
