@@ -73,9 +73,9 @@ export const EditCreateHyperLinkForm: React.FC<TProps> = ({ hyperLink }) => {
   const form = useForm<THyperLinkSchema>({
     resolver: zodResolver(hyperLinkSchema),
     defaultValues: {
-      title: hyperLink?.title,
+      title: hyperLink?.title ?? "",
       color: hyperLink?.color ?? "red",
-      link: hyperLink?.link,
+      link: hyperLink?.link ?? "",
     },
   });
 

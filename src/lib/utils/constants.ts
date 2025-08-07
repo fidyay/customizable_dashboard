@@ -23,3 +23,5 @@ export const appHoverBgColors = {
 export const appColorsArr = Object.keys(appBgColors) as Array<
   keyof typeof appBgColors
 >;
+
+export const MAX_TOTAL_HYPERLINKS = 9;
