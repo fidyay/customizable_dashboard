@@ -28,7 +28,7 @@ type TFormTitleProps = {
 
 const FormTitle: React.FC<TFormTitleProps> = ({ hyperLink }) => {
   return (
-    <h1 className="font-bold mb-4">
+    <h1 className="font-bold mb-4 truncate">
       {hyperLink ? `Edit hyperlink ${hyperLink.title}` : "Create hyperlink"}
     </h1>
   );

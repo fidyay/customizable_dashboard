@@ -46,9 +46,9 @@ export const ResponsiveDialog: React.FC<TProps> = ({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>{trigger}</DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
+        <DialogContent className="sm:max-w-[425px] overflow-hidden">
+          <DialogHeader className="max-w-full overflow-hidden">
+            <DialogTitle className="max-w-full truncate">{title}</DialogTitle>
             {description ? (
               <DialogDescription>{description}</DialogDescription>
             ) : null}
@@ -70,7 +70,7 @@ export const ResponsiveDialog: React.FC<TProps> = ({
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>{title}</DrawerTitle>
+          <DrawerTitle className="max-w-full truncate">{title}</DrawerTitle>
           {description ? (
             <DrawerDescription>{description}</DrawerDescription>
           ) : null}
