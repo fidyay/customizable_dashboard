@@ -1,3 +1,4 @@
+"use client";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -65,14 +66,10 @@ const DeleteHyperLink: React.FC<TDeleteHyperLinkProps> = ({
 };
 
 type TProps = {
-  onSubmit: (val: THyperLink) => void;
   hyperLink?: THyperLink;
 };
 
-export const EditCreateHyperLinkForm: React.FC<TProps> = ({
-  onSubmit,
-  hyperLink,
-}) => {
+export const EditCreateHyperLinkForm: React.FC<TProps> = ({ hyperLink }) => {
   const form = useForm<THyperLinkSchema>({
     resolver: zodResolver(hyperLinkSchema),
     defaultValues: {
@@ -88,12 +85,19 @@ export const EditCreateHyperLinkForm: React.FC<TProps> = ({
     router.push("/");
   }, [router]);
 
+  const addHyperLink = useStore((state) => state.addHyperLink);
+  const editHyperLink = useStore((state) => state.editHyperLink);
+
   const handleSubmit = useCallback(
     (form: THyperLinkSchema) => {
       if (hyperLink) {
-        onSubmit({ ...form, id: hyperLink.id, createdAt: hyperLink.createdAt });
+        editHyperLink({
+          ...form,
+          id: hyperLink.id,
+          createdAt: hyperLink.createdAt,
+        });
       } else {
-        onSubmit({
+        addHyperLink({
           ...form,
           id: nanoid(),
           createdAt: new Date().valueOf(),
@@ -102,7 +106,7 @@ export const EditCreateHyperLinkForm: React.FC<TProps> = ({
 
       handleBack();
     },
-    [hyperLink, onSubmit, handleBack]
+    [hyperLink, addHyperLink, editHyperLink, handleBack]
   );
 
   return (
