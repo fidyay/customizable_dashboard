@@ -39,7 +39,10 @@ export const ColorPicker: React.FC<TProps> = ({ value, onChange }) => {
           aria-expanded={open}
           className="w-full justify-between"
         >
-          {value ? capitalize(value) : "Select color..."}
+          <div className="flex items-center gap-2">
+            {value ? <ColorDot color={appBgColors[value]} /> : null}
+            {value ? capitalize(value) : "Select color..."}
+          </div>
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -47,7 +50,7 @@ export const ColorPicker: React.FC<TProps> = ({ value, onChange }) => {
         <Command>
           <CommandInput placeholder="Search color..." />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No color found.</CommandEmpty>
             <CommandGroup>
               {Object.entries(appBgColors).map(([currentValue, style]) => {
                 return (
@@ -62,15 +65,15 @@ export const ColorPicker: React.FC<TProps> = ({ value, onChange }) => {
                   >
                     <div className="flex items-center justify-between w-full">
                       <div className="flex items-center gap-2">
-                        <CheckIcon
-                          className={cn(
-                            "h-4 w-4",
-                            currentValue === value ? "opacity-100" : "opacity-0"
-                          )}
-                        />
+                        <ColorDot color={style} />
                         {capitalize(currentValue)}
                       </div>
-                      <ColorDot color={style} />
+                      <CheckIcon
+                        className={cn(
+                          "h-4 w-4",
+                          currentValue === value ? "opacity-100" : "opacity-0"
+                        )}
+                      />
                     </div>
                   </CommandItem>
                 );
